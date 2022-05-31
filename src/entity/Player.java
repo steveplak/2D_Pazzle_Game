@@ -1,6 +1,7 @@
 package entity;
 
 import java.awt.Graphics2D;
+import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
@@ -18,6 +19,13 @@ public class Player extends Entity{
 		
 		this.gp = gp;
 		this.keyH = keyH;
+		
+		solidArea = new Rectangle();
+		solidArea.x = 8;
+		solidArea.y = 8;
+		solidArea.width = 32;
+		solidArea.height = 32;
+		
 		
 		setDefaultValues();
 		getPlayerImage();
@@ -67,8 +75,12 @@ public class Player extends Entity{
 		} else if ((keyH.rightPressed) == true) {
 			direction = "right";
 			x += speed;
-			
+		
 		}
+		
+		collisionOn = false;
+		gp.cChecker.checkTile(this);
+		
 		spriteCounter++;
 		if(spriteCounter > 20) {
 			if(spriteNum == 1) {
