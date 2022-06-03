@@ -20,8 +20,8 @@ public class Player extends Entity {
 		this.keyH = keyH;
 
 		solidArea = new Rectangle();
-		solidArea.x = 0;
-		solidArea.y = 0;
+		solidArea.x = 1;
+		solidArea.y = 1;
 		solidArea.width = 16;
 		solidArea.height = 16;
 
@@ -44,9 +44,12 @@ public class Player extends Entity {
 			Bdown = ImageIO.read(getClass().getResourceAsStream("/player/sprights/Blue/BDown/pixil-frame-0.png"));
 			Bdown1 = ImageIO.read(getClass().getResourceAsStream("/player/sprights/Blue/BDown/pixil-frame-0 (1).png"));
 			Bright = ImageIO.read(getClass().getResourceAsStream("/player/sprights/Blue/BRight/pixil-frame-0.png"));
-			Bright1 = ImageIO.read(getClass().getResourceAsStream("/player/sprights/Blue/BRight/pixil-frame-0 (1).png"));
-			Bright2 = ImageIO.read(getClass().getResourceAsStream("/player/sprights/Blue/BRight/pixil-frame-0 (2).png"));
-			Bright3 = ImageIO.read(getClass().getResourceAsStream("/player/sprights/Blue/BRight/pixil-frame-0 (3).png"));
+			Bright1 = ImageIO
+					.read(getClass().getResourceAsStream("/player/sprights/Blue/BRight/pixil-frame-0 (1).png"));
+			Bright2 = ImageIO
+					.read(getClass().getResourceAsStream("/player/sprights/Blue/BRight/pixil-frame-0 (2).png"));
+			Bright3 = ImageIO
+					.read(getClass().getResourceAsStream("/player/sprights/Blue/BRight/pixil-frame-0 (3).png"));
 			Bleft = ImageIO.read(getClass().getResourceAsStream("/player/sprights/Blue/BLeft/pixil-frame-0.png"));
 			Bleft1 = ImageIO.read(getClass().getResourceAsStream("/player/sprights/Blue/BLeft/pixil-frame-0 (1).png"));
 			Bleft2 = ImageIO.read(getClass().getResourceAsStream("/player/sprights/Blue/BLeft/pixil-frame-0 (2).png"));
@@ -56,18 +59,21 @@ public class Player extends Entity {
 			e.printStackTrace();
 		}
 	}
+	public void getCampfireImage() {
+		CImage1 = ImageIO.read(getClass().getResourceAsStream("/player/sprights/Blue/BUp/pixil-frame-0.png"));
+	}
 
 	public void update() {
-		if ((keyH.upPressed) == true) {
+		if (keyH.upPressed)  {
 			direction = "up";
 			worldy -= speed;
-		} else if ((keyH.downPressed) == true) {
+		} else if (keyH.downPressed) {
 			direction = "down";
 			worldy += speed;
-		} else if ((keyH.leftPressed) == true) {
+		} else if (keyH.leftPressed) {
 			direction = "left";
 			worldx -= speed;
-		} else if ((keyH.rightPressed) == true) {
+		} else if (keyH.rightPressed) {
 			direction = "right";
 			worldx += speed;
 		}
@@ -76,7 +82,7 @@ public class Player extends Entity {
 		gp.cChecker.checkTile(this);
 
 		if (collisionOn == false) {
-			switch (direction) {
+			switch ("") {
 			case "up":
 				worldy -= speed;
 				break;
@@ -115,6 +121,7 @@ public class Player extends Entity {
 				spriteNum = 1;
 			}
 			spriteCounter = 0;
+			
 		}
 	}
 
@@ -174,7 +181,7 @@ public class Player extends Entity {
 			}
 			break;
 		}
-		g2.drawImage(image, 100, 100, gp.tileSize, gp.tileSize, null);
+		g2.drawImage(image, worldx, worldy, gp.tileSize, gp.tileSize, null);
 
 	}
 }

@@ -19,16 +19,14 @@ public class GamePanel extends JPanel implements Runnable {
 	public final int maxScreenRow = 20;
 	public final int screenWidth = tileSize * maxScreenCol; // 816 pxl
 	public final int screenHeight = tileSize * maxScreenRow; // 960 pxl
-	
+
 	int FPS = 60;
-	
+
 	TileManager tileM = new TileManager(this);
 	KeyHandler keyH = new KeyHandler();
 	Thread gameThread;
 	public CollisionChecker cChecker = new CollisionChecker(this);
-	Player player = new Player(this,keyH);
-	
-	
+	Player player = new Player(this, keyH);
 
 	public GamePanel() {
 		this.setPreferredSize(new Dimension(screenWidth, screenHeight));
@@ -46,21 +44,21 @@ public class GamePanel extends JPanel implements Runnable {
 
 	@Override
 	public void run() {
-		double drawInterval = 1000000000/FPS;
+		double drawInterval = 1000000000 / FPS;
 		double nextDrawTime = System.nanoTime() + drawInterval;
 		while (gameThread != null) {
 			update();
 			repaint();
 			try {
 				double remainingTime = nextDrawTime - System.nanoTime();
-				remainingTime = remainingTime /1000000;
-				if(remainingTime < 0) {
+				remainingTime = remainingTime / 1000000;
+				if (remainingTime < 0) {
 					remainingTime = 0;
 				}
 				Thread.sleep((long) remainingTime);
-				
+
 				nextDrawTime += drawInterval;
-			}catch (InterruptedException e) {
+			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
 		}
@@ -75,7 +73,7 @@ public class GamePanel extends JPanel implements Runnable {
 		super.paintComponent(g);
 
 		Graphics2D g2 = (Graphics2D) g;
-		
+
 		tileM.draw(g2);
 		player.draw(g2);
 		g2.dispose();
