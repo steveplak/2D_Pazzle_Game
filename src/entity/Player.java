@@ -20,10 +20,10 @@ public class Player extends Entity {
 		this.keyH = keyH;
 
 		solidArea = new Rectangle();
-		solidArea.x = 1;
-		solidArea.y = 1;
-		solidArea.width = 16;
-		solidArea.height = 16;
+		solidArea.x = 0;
+		solidArea.y = 0;
+		solidArea.width = 48;
+		solidArea.height = 48;
 
 		setDefaultValues();
 		getPlayerImage();
@@ -31,7 +31,7 @@ public class Player extends Entity {
 
 	public void setDefaultValues() {
 
-		speed = 4;
+		 speed = 4;
 		direction = "right";
 	}
 
@@ -54,13 +54,10 @@ public class Player extends Entity {
 			Bleft1 = ImageIO.read(getClass().getResourceAsStream("/player/sprights/Blue/BLeft/pixil-frame-0 (1).png"));
 			Bleft2 = ImageIO.read(getClass().getResourceAsStream("/player/sprights/Blue/BLeft/pixil-frame-0 (2).png"));
 			Bleft3 = ImageIO.read(getClass().getResourceAsStream("/player/sprights/Blue/BLeft/pixil-frame-0 (3).png"));
-
+		
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-	}
-	public void getCampfireImage() {
-		CImage1 = ImageIO.read(getClass().getResourceAsStream("/player/sprights/Blue/BUp/pixil-frame-0.png"));
 	}
 
 	public void update() {
@@ -182,6 +179,7 @@ public class Player extends Entity {
 			break;
 		}
 		g2.drawImage(image, worldx, worldy, gp.tileSize, gp.tileSize, null);
+		g2.drawImage(image, worldx+400, worldy, gp.tileSize, gp.tileSize, null);
 
 	}
 }
